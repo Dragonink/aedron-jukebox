@@ -1,0 +1,11 @@
+## TypeScript
+app/**
+!app/views/
+!app/views/**
+!app/assets/
+!app/assets/**
+## Node.js
+node_modules/
+
+## Visual Studio Code
+.vscode/

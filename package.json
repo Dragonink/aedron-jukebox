@@ -1,0 +1,22 @@
+{
+  "productName": "Aedron Jukebox",
+  "name": "aedron-jukebox",
+  "version": "0.1.0",
+  "author": "Dragonink (https://github.com/Dragonink)",
+  "description": "",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": "^14.11.0"
+  },
+  "devDependencies": {
+    "electron": "^10.1.2",
+    "typescript": "4.0.3"
+  },
+  "main": "app/scripts/main/index.js",
+  "scripts": {
+    "build": "tsc -b",
+    "postbuild": "node postbuild.js",
+    "start": "cd app && npm start"
+  }
+}

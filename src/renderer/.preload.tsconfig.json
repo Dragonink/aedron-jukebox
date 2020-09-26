@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json.schemastore.org/tsconfig",
+    "extends": "../../super.tsconfig.json",
+    "compilerOptions": {
+        "sourceMap": false,
+        "inlineSourceMap": true,
+        "lib": [
+            "ES2020",
+            "DOM",
+            "DOM.Iterable"
+        ]
+    },
+    "include": [
+        "./**/preload.ts",
+        "./**/*.preload.ts"
+    ],
+    "references": [
+        {
+            "path": "../common/.tsconfig.json"
+        }
+    ]
+}

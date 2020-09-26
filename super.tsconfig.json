@@ -1,0 +1,23 @@
+{
+    "$schema": "http://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+        "composite": true,
+        "rootDir": "src",
+        "outDir": "app/scripts",
+        "removeComments": true,
+        "declarationMap": true,
+        "declarationDir": "app/typings",
+        "sourceMap": true,
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "skipLibCheck": true,
+        "target": "ES2020",
+        "lib": [
+            "ES2020"
+        ],
+        "module": "CommonJS",
+        "moduleResolution": "Node"
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "$schema": "http://json.schemastore.org/tsconfig",
+    "files": [],
+    "references": [
+        {
+            "path": ".preload.tsconfig.json"
+        },
+        {
+            "path": ".browser.tsconfig.json"
+        }
+    ]
+}
