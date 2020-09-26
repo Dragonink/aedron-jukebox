@@ -85,7 +85,7 @@ if (!app.requestSingleInstanceLock()) {
                 version: app.getVersion(),
                 credits: undefined,
                 authors: [PACKAGE.author, ...(PACKAGE.contributors ?? [])],
-                website: undefined,//TODO
+                website: "https://github.com/Dragonink/aedron-jukebox",
                 iconPath
             }))(require("../../package.json"));
             // Setup application menu

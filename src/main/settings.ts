@@ -1,5 +1,5 @@
 import { Accelerator, app, BrowserWindow, dialog, globalShortcut } from "electron";
-import { existsSync, promises, writeFileSync } from "fs";
+import { existsSync, mkdirSync, promises, writeFileSync } from "fs";
 import { resolve } from "path";
 import Settings from "../common/Settings";
 
@@ -76,6 +76,8 @@ export function fullKeybind(modifier: Accelerator): (keybind: Accelerator) => Ac
         .join("+");
 }
 
+// Create data directory if inexistent
+mkdirSync(PATH, { recursive: true });
 // Create settings file with default values if inexistent
 if (!existsSync(SETTINGS)) writeFileSync(SETTINGS, JSON.stringify(DEFAULTS), "utf8");
 // Check initialization operations
