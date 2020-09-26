@@ -1,0 +1,122 @@
+[hidden] {
+    display: none !important;
+}
+@media (prefers-color-scheme: light) {
+    html {
+        --theme-color: black;
+
+        background-color: white;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    html {
+        --theme-color: white;
+
+        background-color: #212121;
+    }
+}
+
+html {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    user-select: none;
+    color: var(--theme-color);
+}
+body {
+    --margin: 8px;
+
+    width: calc(100vw - 2 * var(--margin));
+    height: calc(100vh - 2 * var(--margin));
+    margin: var(--margin);
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+}
+kbd::before {
+    content: "[";
+    font-weight: bold;
+}
+kbd::after {
+    content: "]";
+    font-weight: bold;
+}
+main table {
+    width: 100%;
+    border-collapse: collapse;
+}
+main table > thead {
+    font-variant: small-caps;
+    border-bottom: 1px solid var(--theme-color);
+}
+main table > colgroup > col:first-of-type {
+    width: max-content;
+}
+main table > tbody > tr:hover {
+    background-color: #888;
+}
+main form input[type="checkbox"]:not(:checked) + label {
+    opacity: .5;
+}
+main form input[type="checkbox"]:disabled + label {
+    color: red;
+}
+main div.whole-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+main form div.whole-line > select {
+    width: 70%;
+}
+
+main > .panel {
+    width: 100%;
+    outline: 1px solid var(--color);
+    margin: .5% 0;
+}
+main > .panel:first-child {
+    margin-top: 0;
+}
+main > .panel:last-child {
+    margin-bottom: 0;
+}
+main > .panel > header:first-child {
+    text-align: start;
+    font-size: small;
+    font-weight: bold;
+    font-variant: small-caps;
+    color: var(--color);
+    margin-bottom: 10px;
+}
+main > .panel:nth-child(1) {
+    --color: #0592d0;
+
+    flex-grow: 7;
+}
+main > .panel:nth-child(1) > form#sets label {
+    font-weight: bold;
+    font-variant: small-caps;
+}
+main > .panel:nth-child(1) > table#sounds > tbody > tr.playing {
+    background-color: var(--color);
+}
+main > .panel:nth-child(1) > table#sounds > tbody > tr > td {
+    font-family: monospace;
+}
+main > .panel:nth-child(1) > table#sounds > tbody > tr > td::after {
+    content: attr(data-path);
+}
+main > .panel:nth-child(1) > form#sets {
+    margin-bottom: 10px;
+}
+main > .panel:nth-child(2) {
+    --color: #02bf02;
+
+    flex-grow: 3;
+}

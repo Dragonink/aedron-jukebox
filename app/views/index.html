@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self';style-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="index.css" />
+    <script type="module" src="../scripts/renderer/index.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="panel">
+            <header>Sounds</header>
+            <form id="sets" action="" enctype="text/plain" method="dialog">
+                <button type="submit" disabled hidden>
+                    <!--NOTE: prevent implicit form submission -->
+                </button>
+                <div class="whole-line">
+                    <label for="set">Selected set</label>
+                    <select name="set">
+                        <template id="set">
+                            <option></option>
+                        </template>
+                    </select>
+                </div>
+            </form>
+            <table id="sounds">
+                <colgroup>
+                    <col />
+                    <col />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col">Sound #</th>
+                        <th scope="col">File</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template id="sound">
+                        <tr data-path="">
+                            <th scope="row"></th>
+                            <td data-path=""></td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        <form id="devices" class="panel" action="" enctype="text/plain" method="dialog">
+            <header>Devices</header>
+            <button type="submit" disabled hidden>
+                <!--NOTE: prevent implicit form submission -->
+            </button>
+            <template id="device">
+                <div>
+                    <input type="checkbox" />
+                    <label></label>
+                </div>
+            </template>
+        </form>
+    </main>
+</body>
+
+</html>
