@@ -61,7 +61,7 @@ declare var window: ElectronWindow;
             select.onchange = function (_event) {
                 const sounds: { [sound: string]: undefined | false; } = {};
                 soundSet.forEach((tr, idx, _arr) => {
-                    let sound = select.options[select.selectedIndex].getAttribute("data-sound" + idx);
+                    let sound = select.selectedIndex > -1 ? select.options[select.selectedIndex].getAttribute("data-sound" + idx) : null;
                     if (sound === null || sound === "") {
                         sound = "";
                         sounds["sound" + idx] = false;
@@ -137,6 +137,13 @@ declare var window: ElectronWindow;
                         if ((this as HTMLInputElement).checked) {
                             // Create audio element if checked
                             const audio = new Audio() as Audio;
+                            audio.onerror = function (_event, _source, _line, _col, _error) {
+                                console.warn("Could not load", (this as HTMLAudioElement).src);
+                                stop();
+                            };
+                            audio.onended = function (_event) {
+                                return stop();
+                            };
                             audio.oncanplaythrough = function (_event) {
                                 return (this as HTMLAudioElement).play();
                             };

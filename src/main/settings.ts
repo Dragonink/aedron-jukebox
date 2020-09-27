@@ -129,7 +129,7 @@ Promise.all(["sets"]
     })
     .filter(function (val, _idx, _arr): val is Promise<void> { return val !== undefined })
 )
-    .then(() => console.debug("Created data directories"))
+    .then(tasks => { if (tasks.length > 0) console.debug("Created data directories"); })
     .catch(error => {
         console.error(error);
         dialog.showErrorBox("Could not create directory", error.toString());

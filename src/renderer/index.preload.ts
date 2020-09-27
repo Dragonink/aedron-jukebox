@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer } from "electron";
-import { promises } from "fs";
+import { promises, Stats } from "fs";
 import { basename, resolve } from "path";
 import AppMenuConfig from "../common/AppMenuConfig";
 
@@ -35,16 +35,17 @@ const API = {
                         .then((dir: string) => path = resolve(dir, "sets"))
                         .then(path => promises.readdir(path))
                         .then(files => {
-                            sets = files.map((file, _idx, _arr) => basename(file, ".txt"));
-                            return Promise.allSettled(files
-                                .map((file, _idx, _arr) => promises.lstat(resolve(path, file))
-                                    .then(stats => stats.isFile() ? promises.readFile(resolve(path, file), "utf8") : Promise.reject())
-                                )
-                            );
+                            sets = files.map((file, _idx, _arr) => resolve(path, file));
+                            return Promise.allSettled(sets.map((path, _idx, _arr) => promises.lstat(path)));
                         })
+                        .then(stats => { sets = sets.filter((_path, idx, _arr) => stats[idx].status === "fulfilled" && (stats[idx] as PromiseFulfilledResult<Stats>).value.isFile()); })
+                        .then(() => Promise.allSettled(sets.map((path, _idx, _arr) => promises.readFile(path, "utf8"))))
                         .then(results => listener(results
                             .filter(function (result, _idx, _arr): result is PromiseFulfilledResult<string> { return result.status === "fulfilled"; })
-                            .map((result, idx, _arr) => ({ name: sets[idx], content: result.value }))
+                            .map((result, idx, _arr) => ({
+                                name: basename(sets[idx], ".txt"),
+                                content: result.value
+                            }))
                         ))
                         .then(() => console.debug("Loaded %i sets", sets.length))
                         .catch(error => {
